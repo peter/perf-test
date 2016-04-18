@@ -32,8 +32,10 @@ bzt bzt-static.yml -o execution.concurrency=600
 14:17:40 INFO: Percentile 100.0%: 15.940
 ```
 
-## Questions
+## TODO/Questions
 
+* Does the test case make sense? Should we also try for example 3 parallel JSON requests from the server?
+* Are the different stacks properly configured?
 * What is an appropriate timeout? Currently using 10 seconds.
 * For how long should the test run? Currently 1 minute.
 
