@@ -3,7 +3,7 @@
 ## Test Case: One JSON HTTP request
 
 The server makes a GET HTTP request to fetch a small piece of JSON that is deserialized/serialized and
-served back to client.
+served back to the client.
 
 ## Hardware
 
