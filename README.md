@@ -36,6 +36,7 @@ bzt bzt-static.yml -o execution.concurrency=600
 
 * Does the test case make sense? Should we also try for example 3 parallel JSON requests from the server?
 * Are the different stacks properly configured?
+* What is an appropriate concurrency level for benchmarking? Currently 600.
 * What is an appropriate timeout? Currently using 10 seconds.
 * For how long should the test run? Currently 1 minute.
 
@@ -116,6 +117,23 @@ bzt bzt.yml -o execution.concurrency=600
 16:39:40 INFO: Percentile 99.0%: 0.884
 16:39:40 INFO: Percentile 99.9%: 2.470
 16:39:40 INFO: Percentile 100.0%: 3.406
+```
+
+## API Stack: clojure/immutant
+
+```
+bzt bzt.yml -o execution.concurrency=600
+
+19:29:49 INFO: Test duration: 0:01:05
+19:29:49 INFO: Samples count: 32208, 5.59% failures
+19:29:49 INFO: Average times: total 1.112, latency 0.520, connect 0.032
+19:29:49 INFO: Percentile 0.0%: 0.015
+19:29:49 INFO: Percentile 50.0%: 0.376
+19:29:49 INFO: Percentile 90.0%: 1.232
+19:29:49 INFO: Percentile 95.0%: 10.001
+19:29:49 INFO: Percentile 99.0%: 10.006
+19:29:49 INFO: Percentile 99.9%: 10.283
+19:29:49 INFO: Percentile 100.0%: 10.300
 ```
 
 ## API Stack: Ruby on Rails
