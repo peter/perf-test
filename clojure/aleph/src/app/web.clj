@@ -37,5 +37,5 @@
 (defn -main [& [port]]
   (let [port (Integer. (or port (System/getenv "PORT") 3000))]
     (println "Starting server on port " port)
-    (http/start-server app {:port port}))
+    (http/start-server app {:port port :executor :none}))
     (println "Server started..."))

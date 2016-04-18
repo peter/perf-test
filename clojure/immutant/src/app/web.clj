@@ -36,4 +36,6 @@
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (System/getenv "PORT") 3000))]
-    (web/run app {"port" port})))
+    (web/run app {
+      :port port
+      :dispatch? false})))

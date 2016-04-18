@@ -45,6 +45,14 @@ bzt bzt-static.yml -o execution.concurrency=600
 * [Framework Benchmarks from TechEmpower](https://www.techempower.com/benchmarks)
 * [Clojure Web Server Benchmarks](https://github.com/ptaoussanis/clojure-web-server-benchmarks)
 
+## Summary/Findings
+
+For a concurrency level of 600 the average response times roughly distribute themselves like this:
+
+* 200 ms: clojure/aleph, clojure/http-kit
+* 1000 ms: clojure/jetty, clojure/immutant, Elixir/Phoenix, Node.js/Express
+* 6000 ms: ruby/rails
+
 ## API Stack: clojure/jetty
 
 Uses ring-jetty-adapter, clj-http, and cheshire libraries.
@@ -124,16 +132,16 @@ bzt bzt.yml -o execution.concurrency=600
 ```
 bzt bzt.yml -o execution.concurrency=600
 
-19:29:49 INFO: Test duration: 0:01:05
-19:29:49 INFO: Samples count: 32208, 5.59% failures
-19:29:49 INFO: Average times: total 1.112, latency 0.520, connect 0.032
-19:29:49 INFO: Percentile 0.0%: 0.015
-19:29:49 INFO: Percentile 50.0%: 0.376
-19:29:49 INFO: Percentile 90.0%: 1.232
-19:29:49 INFO: Percentile 95.0%: 10.001
-19:29:49 INFO: Percentile 99.0%: 10.006
-19:29:49 INFO: Percentile 99.9%: 10.283
-19:29:49 INFO: Percentile 100.0%: 10.300
+23:30:15 INFO: Test duration: 0:01:05
+23:30:15 INFO: Samples count: 32620, 5.52% failures
+23:30:15 INFO: Average times: total 1.092, latency 0.516, connect 0.023
+23:30:15 INFO: Percentile 0.0%: 0.007
+23:30:15 INFO: Percentile 50.0%: 0.363
+23:30:15 INFO: Percentile 90.0%: 1.019
+23:30:15 INFO: Percentile 95.0%: 10.000
+23:30:15 INFO: Percentile 99.0%: 10.009
+23:30:15 INFO: Percentile 99.9%: 10.086
+23:30:15 INFO: Percentile 100.0%: 10.124
 ```
 
 ## API Stack: clojure/aleph
@@ -141,65 +149,16 @@ bzt bzt.yml -o execution.concurrency=600
 ```
 bzt bzt.yml -o execution.concurrency=600
 
-23:01:40 INFO: Test duration: 0:01:33
-23:01:40 INFO: Samples count: 379320, 99.76% failures
-23:01:40 INFO: Average times: total 0.084, latency 0.069, connect 0.002
-23:01:40 INFO: Percentile 0.0%: 0.000
-23:01:40 INFO: Percentile 50.0%: 0.014
-23:01:40 INFO: Percentile 90.0%: 0.264
-23:01:40 INFO: Percentile 95.0%: 0.385
-23:01:40 INFO: Percentile 99.0%: 0.641
-23:01:40 INFO: Percentile 99.9%: 10.002
-23:01:40 INFO: Percentile 100.0%: 12.438
-
-SEVERE: error in deferred handler
-java.util.concurrent.RejectedExecutionException
-	at io.aleph.dirigiste.Executor.execute(Executor.java:332)
-	at manifold.deferred.Deferred$fn__1108.invoke(deferred.clj:396)
-	at manifold.deferred.Deferred.success(deferred.clj:396)
-	at manifold.deferred$success_BANG_.invokeStatic(deferred.clj:243)
-	at manifold.deferred$success_BANG_.invoke(deferred.clj:240)
-	at manifold.deferred$eval1262$chain_SINGLEQUOTE____1283.invoke(deferred.clj:737)
-	at manifold.deferred$eval1262$chain_SINGLEQUOTE____1283.invoke(deferred.clj:752)
-	at manifold.deferred$eval1262$subscribe__1263$fn__1268.invoke(deferred.clj:716)
-	at manifold.deferred.Listener.onSuccess(deferred.clj:219)
-	at manifold.deferred.Deferred$fn__1116$fn__1117.invoke(deferred.clj:398)
-	at clojure.lang.AFn.run(AFn.java:22)
-	at io.aleph.dirigiste.Executor$3.run(Executor.java:308)
-	at io.aleph.dirigiste.Executor$Worker$1.run(Executor.java:62)
-	at manifold.executor$thread_factory$reify__511$f__512.invoke(executor.clj:36)
-	at clojure.lang.AFn.run(AFn.java:22)
-	at java.lang.Thread.run(Thread.java:745)
-```
-
-```
-bzt bzt.yml -o execution.concurrency=100
-
-23:03:32 INFO: Test duration: 0:01:08
-23:03:32 INFO: Samples count: 140733, 0.00% failures
-23:03:32 INFO: Average times: total 0.042, latency 0.042, connect 0.000
-23:03:32 INFO: Percentile 0.0%: 0.005
-23:03:32 INFO: Percentile 50.0%: 0.038
-23:03:32 INFO: Percentile 90.0%: 0.054
-23:03:32 INFO: Percentile 95.0%: 0.069
-23:03:32 INFO: Percentile 99.0%: 0.124
-23:03:32 INFO: Percentile 99.9%: 0.273
-23:03:32 INFO: Percentile 100.0%: 0.592
-```
-
-```
-bzt bzt.yml -o execution.concurrency=1
-
-22:59:20 INFO: Test duration: 0:01:03
-22:59:20 INFO: Samples count: 59410, 0.00% failures
-22:59:20 INFO: Average times: total 0.001, latency 0.001, connect 0.000
-22:59:20 INFO: Percentile 0.0%: 0.000
-22:59:20 INFO: Percentile 50.0%: 0.001
-22:59:20 INFO: Percentile 90.0%: 0.001
-22:59:20 INFO: Percentile 95.0%: 0.002
-22:59:20 INFO: Percentile 99.0%: 0.002
-22:59:20 INFO: Percentile 99.9%: 0.009
-22:59:20 INFO: Percentile 100.0%: 0.109
+23:25:00 INFO: Test duration: 0:01:12
+23:25:00 INFO: Samples count: 189356, 0.00% failures
+23:25:00 INFO: Average times: total 0.186, latency 0.183, connect 0.003
+23:25:00 INFO: Percentile 0.0%: 0.005
+23:25:00 INFO: Percentile 50.0%: 0.164
+23:25:00 INFO: Percentile 90.0%: 0.247
+23:25:00 INFO: Percentile 95.0%: 0.303
+23:25:00 INFO: Percentile 99.0%: 0.618
+23:25:00 INFO: Percentile 99.9%: 2.118
+23:25:00 INFO: Percentile 100.0%: 3.528
 ```
 
 ## API Stack: Ruby on Rails
