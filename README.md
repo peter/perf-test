@@ -35,6 +35,7 @@ bzt bzt-static.yml -o execution.concurrency=600
 ## Questions
 
 * What is an appropriate timeout? Currently using 10 seconds.
+* For how long should the test run? Currently 1 minute.
 
 ## API Stack: clojure/jetty
 
