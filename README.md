@@ -136,6 +136,72 @@ bzt bzt.yml -o execution.concurrency=600
 19:29:49 INFO: Percentile 100.0%: 10.300
 ```
 
+## API Stack: clojure/aleph
+
+```
+bzt bzt.yml -o execution.concurrency=600
+
+23:01:40 INFO: Test duration: 0:01:33
+23:01:40 INFO: Samples count: 379320, 99.76% failures
+23:01:40 INFO: Average times: total 0.084, latency 0.069, connect 0.002
+23:01:40 INFO: Percentile 0.0%: 0.000
+23:01:40 INFO: Percentile 50.0%: 0.014
+23:01:40 INFO: Percentile 90.0%: 0.264
+23:01:40 INFO: Percentile 95.0%: 0.385
+23:01:40 INFO: Percentile 99.0%: 0.641
+23:01:40 INFO: Percentile 99.9%: 10.002
+23:01:40 INFO: Percentile 100.0%: 12.438
+
+SEVERE: error in deferred handler
+java.util.concurrent.RejectedExecutionException
+	at io.aleph.dirigiste.Executor.execute(Executor.java:332)
+	at manifold.deferred.Deferred$fn__1108.invoke(deferred.clj:396)
+	at manifold.deferred.Deferred.success(deferred.clj:396)
+	at manifold.deferred$success_BANG_.invokeStatic(deferred.clj:243)
+	at manifold.deferred$success_BANG_.invoke(deferred.clj:240)
+	at manifold.deferred$eval1262$chain_SINGLEQUOTE____1283.invoke(deferred.clj:737)
+	at manifold.deferred$eval1262$chain_SINGLEQUOTE____1283.invoke(deferred.clj:752)
+	at manifold.deferred$eval1262$subscribe__1263$fn__1268.invoke(deferred.clj:716)
+	at manifold.deferred.Listener.onSuccess(deferred.clj:219)
+	at manifold.deferred.Deferred$fn__1116$fn__1117.invoke(deferred.clj:398)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at io.aleph.dirigiste.Executor$3.run(Executor.java:308)
+	at io.aleph.dirigiste.Executor$Worker$1.run(Executor.java:62)
+	at manifold.executor$thread_factory$reify__511$f__512.invoke(executor.clj:36)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.lang.Thread.run(Thread.java:745)
+```
+
+```
+bzt bzt.yml -o execution.concurrency=100
+
+23:03:32 INFO: Test duration: 0:01:08
+23:03:32 INFO: Samples count: 140733, 0.00% failures
+23:03:32 INFO: Average times: total 0.042, latency 0.042, connect 0.000
+23:03:32 INFO: Percentile 0.0%: 0.005
+23:03:32 INFO: Percentile 50.0%: 0.038
+23:03:32 INFO: Percentile 90.0%: 0.054
+23:03:32 INFO: Percentile 95.0%: 0.069
+23:03:32 INFO: Percentile 99.0%: 0.124
+23:03:32 INFO: Percentile 99.9%: 0.273
+23:03:32 INFO: Percentile 100.0%: 0.592
+```
+
+```
+bzt bzt.yml -o execution.concurrency=1
+
+22:59:20 INFO: Test duration: 0:01:03
+22:59:20 INFO: Samples count: 59410, 0.00% failures
+22:59:20 INFO: Average times: total 0.001, latency 0.001, connect 0.000
+22:59:20 INFO: Percentile 0.0%: 0.000
+22:59:20 INFO: Percentile 50.0%: 0.001
+22:59:20 INFO: Percentile 90.0%: 0.001
+22:59:20 INFO: Percentile 95.0%: 0.002
+22:59:20 INFO: Percentile 99.0%: 0.002
+22:59:20 INFO: Percentile 99.9%: 0.009
+22:59:20 INFO: Percentile 100.0%: 0.109
+```
+
 ## API Stack: Ruby on Rails
 
 Using thin web server:

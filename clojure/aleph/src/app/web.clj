@@ -1,24 +1,24 @@
 (ns app.web
-  (:require [ring.adapter.jetty :as jetty]
-            [clojure.java.io :as io]
-            [clj-http.client :as client]
+  (:require [aleph.http :as http]
+            [manifold.deferred :as d]
+            [byte-streams :as bs]
             [cheshire.core :as json]))
 
 (defn index-handler [request]
   {:status 200
    :headers {"Content-Type" "text/html"}
-   :body "Clojure Jetty API"})
+   :body "Clojure Aleph API"})
 
 (defn api-handler [request]
-  (let [response (client/get "http://localhost:9000/articles.json" {:as :json})]
-    {:status (:status response)
+  (let [data (json/parse-string (-> @(http/get "http://localhost:9000/articles.json") :body bs/to-string))]
+    {:status 200
     :headers {"Content-Type" "application/json"}
-    :body (json/generate-string (:body response))}))
+    :body (json/generate-string data)}))
 
 (defn missing-handler [request]
   {:status 404
    :headers {"Content-Type" "text/html"}
-   :body (slurp (io/resource "404.html"))})
+   :body "Missing"})
 
 (def routes [
     {:methods #{:get} :path "/" :handler index-handler}
@@ -32,9 +32,10 @@
 (defn app [request]
   (let [route (first (filter (partial route-match? request) routes))
         handler (get route :handler missing-handler)]
-    ;(println "app request " (:request-method request) (:uri request) (pr-str route))
     (handler request)))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (System/getenv "PORT") 3000))]
-    (jetty/run-jetty app {:port port :join? false :max-threads 100})))
+    (println "Starting server on port " port)
+    (http/start-server app {:port port}))
+    (println "Server started..."))
