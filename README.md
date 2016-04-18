@@ -37,6 +37,11 @@ bzt bzt-static.yml -o execution.concurrency=600
 * What is an appropriate timeout? Currently using 10 seconds.
 * For how long should the test run? Currently 1 minute.
 
+## Resources
+
+* [Framework Benchmarks from TechEmpower](https://www.techempower.com/benchmarks)
+* [Clojure Web Server Benchmarks](https://github.com/ptaoussanis/clojure-web-server-benchmarks)
+
 ## API Stack: clojure/jetty
 
 Uses ring-jetty-adapter, clj-http, and cheshire libraries.
@@ -93,6 +98,23 @@ bzt bzt.yml -o execution.concurrency=1
 ```
 
 The java process grew to a size of around 800 MB.
+
+## API Stack: clojure/http-kit
+
+```
+bzt bzt.yml -o execution.concurrency=600
+
+16:39:40 INFO: Test duration: 0:01:11
+16:39:40 INFO: Samples count: 165851, 0.00% failures
+16:39:40 INFO: Average times: total 0.212, latency 0.207, connect 0.005
+16:39:40 INFO: Percentile 0.0%: 0.009
+16:39:40 INFO: Percentile 50.0%: 0.170
+16:39:40 INFO: Percentile 90.0%: 0.283
+16:39:40 INFO: Percentile 95.0%: 0.380
+16:39:40 INFO: Percentile 99.0%: 0.884
+16:39:40 INFO: Percentile 99.9%: 2.470
+16:39:40 INFO: Percentile 100.0%: 3.406
+```
 
 ## API Stack: Ruby on Rails
 
