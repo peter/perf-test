@@ -57,23 +57,6 @@ bzt bzt.yml -o execution.concurrency=600
 14:19:37 INFO: Percentile 100.0%: 10.148
 ```
 
-Concurrency 300:
-
-```
-bzt bzt.yml -o execution.concurrency=300
-
-14:12:35 INFO: Test duration: 0:01:09
-14:12:35 INFO: Samples count: 32769, 4.02% failures
-14:12:35 INFO: Average times: total 0.598, latency 0.256, connect 0.007
-14:12:35 INFO: Percentile 0.0%: 0.002
-14:12:35 INFO: Percentile 50.0%: 0.217
-14:12:35 INFO: Percentile 90.0%: 0.500
-14:12:35 INFO: Percentile 95.0%: 0.722
-14:12:35 INFO: Percentile 99.0%: 10.019
-14:12:35 INFO: Percentile 99.9%: 10.137
-14:12:35 INFO: Percentile 100.0%: 10.167
-```
-
 Concurrency 100:
 
 ```
@@ -159,4 +142,21 @@ bzt bzt.yml -o execution.concurrency=600
 15:32:31 INFO: Percentile 99.0%: 2.744
 15:32:31 INFO: Percentile 99.9%: 3.744
 15:32:31 INFO: Percentile 100.0%: 4.079
+```
+
+## API Stack: Node.js/Express
+
+```
+bzt bzt.yml -o execution.concurrency=600
+
+16:09:36 INFO: Test duration: 0:01:05
+16:09:36 INFO: Samples count: 30266, 11.49% failures
+16:09:36 INFO: Average times: total 1.178, latency 0.847, connect 0.016
+16:09:36 INFO: Percentile 0.0%: 0.001
+16:09:36 INFO: Percentile 50.0%: 0.721
+16:09:36 INFO: Percentile 90.0%: 1.670
+16:09:36 INFO: Percentile 95.0%: 3.860
+16:09:36 INFO: Percentile 99.0%: 10.005
+16:09:36 INFO: Percentile 99.9%: 10.250
+16:09:36 INFO: Percentile 100.0%: 11.347
 ```
