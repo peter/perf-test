@@ -1,0 +1,118 @@
+---
+cli-aliases:
+  gui:
+    modules:
+      jmeter:
+        gui: true
+  locations:
+    modules:
+      cloud:
+        dump-locations: true
+    provisioning: cloud
+  report:
+    reporting:
+    - blazemeter
+included-configs: []
+install-id: bf0747c8-0d32-42bd-86d5-23ed70cd3115
+modules:
+  ab:
+    class: bzt.modules.ab.ApacheBenchmarkExecutor
+  blazemeter:
+    class: bzt.modules.blazemeter.BlazeMeterUploader
+  cloud:
+    class: bzt.modules.blazemeter.CloudProvisioning
+  console:
+    class: bzt.modules.console.ConsoleStatusReporter
+    disable: false
+  consolidator:
+    buffer-multiplier: 2
+    buffer-scale-choice: 0.5
+    class: bzt.modules.aggregator.ConsolidatingAggregator
+    generalize-labels: false
+    ignore-labels:
+    - ignore
+    max-buffer-len: .inf
+    min-buffer-len: 2
+    percentiles:
+    - 0.0
+    - 50.0
+    - 90.0
+    - 95.0
+    - 99.0
+    - 99.9
+    - 100.0
+  fail-criteria:
+    class: bzt.modules.passfail.PassFailStatus
+  final_stats:
+    class: bzt.modules.reporting.FinalStatus
+  gatling:
+    class: bzt.modules.gatling.GatlingExecutor
+    properties:
+      gatling.data.file.bufferSize: 256
+  grinder:
+    class: bzt.modules.grinder.GrinderExecutor
+    path: ~/.bzt/grinder-taurus/lib/grinder.jar
+    properties:
+      grinder.useConsole: false
+  jmeter:
+    class: bzt.modules.jmeter.JMeterExecutor
+    path: ~/.bzt/jmeter-taurus/
+    properties:
+      jmeter.save.saveservice.autoflush: 'true'
+      jmeter.save.saveservice.connect_time: 'true'
+      jmeterengine.force.system.exit: 'true'
+      mode: Stripped
+      summariser.name: ''
+  jtl-loader: bzt.modules.jmeter.JMeterJTLLoaderExecutor
+  junit-xml:
+    class: bzt.modules.reporting.JUnitXMLReporter
+  local:
+    class: bzt.modules.provisioning.Local
+  locust:
+    class: bzt.modules.locustio.LocustIOExecutor
+  monitoring:
+    class: bzt.modules.monitoring.Monitoring
+  passfail:
+    class: bzt.modules.passfail.PassFailStatus
+  pbench:
+    class: bzt.modules.pbench.PBenchExecutor
+  selenium:
+    class: bzt.modules.selenium.SeleniumExecutor
+    selenium-tools:
+      junit:
+        hamcrest-core: ~/.bzt/selenium-taurus/tools/junit/hamcrest-core.jar
+        jar-name: compiled.jar
+        path: ~/.bzt/selenium-taurus/tools/junit/junit.jar
+        selenium-server: ~/.bzt/selenium-taurus/selenium-server.jar
+        working-dir: classes
+      nose:
+        working-dir: classes
+  shellexec:
+    class: bzt.modules.shellexec.ShellExecutor
+  siege:
+    class: bzt.modules.siege.SiegeExecutor
+provisioning: local
+reporting:
+- final_stats
+- console
+services:
+- local:
+  - metrics:
+    - cpu
+    - mem
+    - bytes-sent
+    - bytes-recv
+    - disk-read
+    - disk-write
+    - disk-space
+    - engine-loop
+  module: monitoring
+settings:
+  aggregator: consolidator
+  artifacts-dir: '%Y-%m-%d_%H-%M-%S.%f'
+  check-interval: 1
+  check-updates: true
+  default-executor: jmeter
+  proxy: {}
+version: 1.4.3
+

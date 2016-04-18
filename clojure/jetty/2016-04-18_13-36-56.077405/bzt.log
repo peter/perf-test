@@ -1,0 +1,54 @@
+[2016-04-18 13:36:55,428 INFO root] Taurus CLI Tool v1.4.3
+[2016-04-18 13:36:55,428 DEBUG root] Command-line options: {'verbose': None, 'no_system_configs': None, 'quiet': None, 'log': 'bzt.log', 'option': None, 'aliases': []}
+[2016-04-18 13:36:55,428 DEBUG root] Python: CPython 2.7.10
+[2016-04-18 13:36:55,428 DEBUG root] OS: ('Darwin', 'C02MM634F6T6.local', '14.5.0', 'Darwin Kernel Version 14.5.0: Wed Jul 29 02:26:53 PDT 2015; root:xnu-2782.40.9~1/RELEASE_X86_64', 'x86_64', 'i386')
+[2016-04-18 13:36:55,534 INFO root] Starting with configs: []
+[2016-04-18 13:36:55,535 INFO Engine] Configuring...
+[2016-04-18 13:36:55,535 DEBUG Engine] Reading machine configs from: /etc/bzt.d
+[2016-04-18 13:36:55,535 INFO Engine] No personal config: /Users/peter.marklund/.bzt-rc
+[2016-04-18 13:36:55,536 DEBUG Engine.Configuration] Configs: ['/etc/bzt.d/10-base.json', '/etc/bzt.d/99-installID.yml']
+[2016-04-18 13:36:55,536 DEBUG Engine.Configuration] Reading /etc/bzt.d/10-base.json as JSON
+[2016-04-18 13:36:55,537 DEBUG Engine.Configuration] Reading /etc/bzt.d/99-installID.yml as YAML
+[2016-04-18 13:36:55,538 DEBUG Engine.Configuration] Configs: []
+[2016-04-18 13:36:55,538 DEBUG root] Configs: []
+[2016-04-18 13:36:55,538 DEBUG Engine] Requesting updates info: http://gettaurus.org/updates/?version=1.4.3&installID=bf0747c8-0d32-42bd-86d5-23ed70cd3115
+[2016-04-18 13:36:56,076 DEBUG Engine] Result: {"latest":"1.4.3","needsUpgrade":false}
+[2016-04-18 13:36:56,077 DEBUG Engine] Installation is up-to-date
+[2016-04-18 13:36:56,077 INFO Engine] Artifacts dir: /Users/peter.marklund/src/tv4/perf-test/clojure/jetty/2016-04-18_13-36-56.077405
+[2016-04-18 13:36:56,077 DEBUG Engine] New artifact filename: /Users/peter.marklund/src/tv4/perf-test/clojure/jetty/2016-04-18_13-36-56.077405/effective
+[2016-04-18 13:36:56,080 DEBUG Engine.Configuration] Dumping YAML config into /Users/peter.marklund/src/tv4/perf-test/clojure/jetty/2016-04-18_13-36-56.077405/effective.yml
+[2016-04-18 13:36:56,097 DEBUG Engine.Configuration] Dumping JSON config into /Users/peter.marklund/src/tv4/perf-test/clojure/jetty/2016-04-18_13-36-56.077405/effective.json
+[2016-04-18 13:36:56,098 INFO Engine] Preparing...
+[2016-04-18 13:36:56,099 DEBUG Engine] Module config: consolidator defaultdict(None, {u'ignore-labels': [u'ignore'], u'percentiles': [0.0, 50.0, 90.0, 95.0, 99.0, 99.9, 100.0], u'class': u'bzt.modules.aggregator.ConsolidatingAggregator'})
+[2016-04-18 13:36:56,099 DEBUG root] Importing module: bzt.modules.aggregator
+[2016-04-18 13:36:56,100 DEBUG root] Loading class: 'ConsolidatingAggregator' from <module 'bzt.modules.aggregator' from '/Users/peter.marklund/anaconda2/lib/python2.7/site-packages/bzt/modules/aggregator.pyc'>
+[2016-04-18 13:36:56,101 DEBUG Engine.consolidator] Buffer scaling setup: percentile 95.0 from [0.0, 50.0, 90.0, 95.0, 99.0, 99.9, 100.0] selected
+[2016-04-18 13:36:56,101 DEBUG Engine] Module config: monitoring defaultdict(None, {u'class': u'bzt.modules.monitoring.Monitoring'})
+[2016-04-18 13:36:56,101 DEBUG root] Importing module: bzt.modules.monitoring
+[2016-04-18 13:36:56,112 DEBUG root] Loading class: 'Monitoring' from <module 'bzt.modules.monitoring' from '/Users/peter.marklund/anaconda2/lib/python2.7/site-packages/bzt/modules/monitoring.pyc'>
+[2016-04-18 13:36:56,113 DEBUG Engine] Module config: local defaultdict(None, {u'class': u'bzt.modules.provisioning.Local'})
+[2016-04-18 13:36:56,113 DEBUG root] Importing module: bzt.modules.provisioning
+[2016-04-18 13:36:56,113 DEBUG root] Loading class: 'Local' from <module 'bzt.modules.provisioning' from '/Users/peter.marklund/anaconda2/lib/python2.7/site-packages/bzt/modules/provisioning.pyc'>
+[2016-04-18 13:36:56,114 DEBUG root] Caught exception in try: Traceback (most recent call last):
+  File "/Users/peter.marklund/anaconda2/lib/python2.7/site-packages/bzt/cli.py", line 155, in perform
+    self.engine.prepare()
+  File "/Users/peter.marklund/anaconda2/lib/python2.7/site-packages/bzt/engine.py", line 111, in prepare
+    self.__prepare_provisioning()
+  File "/Users/peter.marklund/anaconda2/lib/python2.7/site-packages/bzt/engine.py", line 445, in __prepare_provisioning
+    self.provisioning.prepare()
+  File "/Users/peter.marklund/anaconda2/lib/python2.7/site-packages/bzt/modules/provisioning.py", line 60, in prepare
+    super(Local, self).prepare()
+  File "/Users/peter.marklund/anaconda2/lib/python2.7/site-packages/bzt/engine.py", line 749, in prepare
+    raise ValueError("No execution is configured")
+ValueError: No execution is configured
+
+[2016-04-18 13:36:56,114 ERROR root] ValueError: No execution is configured
+[2016-04-18 13:36:56,114 WARNING root] Please wait for graceful shutdown...
+[2016-04-18 13:36:56,114 INFO Engine] Post-processing...
+[2016-04-18 13:36:56,114 DEBUG Engine.consolidator] Consolidator buffer[0]: []
+[2016-04-18 13:36:56,116 DEBUG Engine.Configuration] Dumping YAML config into /Users/peter.marklund/src/tv4/perf-test/clojure/jetty/2016-04-18_13-36-56.077405/effective.yml
+[2016-04-18 13:36:56,131 DEBUG Engine.Configuration] Dumping JSON config into /Users/peter.marklund/src/tv4/perf-test/clojure/jetty/2016-04-18_13-36-56.077405/effective.json
+[2016-04-18 13:36:56,132 INFO root] Artifacts dir: /Users/peter.marklund/src/tv4/perf-test/clojure/jetty/2016-04-18_13-36-56.077405
+[2016-04-18 13:36:56,132 WARNING root] Done performing with code: 1
+[2016-04-18 13:36:56,132 DEBUG Engine] Add existing artifact (move=True): bzt.log
+[2016-04-18 13:36:56,132 DEBUG Engine] Moving bzt.log to /Users/peter.marklund/src/tv4/perf-test/clojure/jetty/2016-04-18_13-36-56.077405/bzt.log

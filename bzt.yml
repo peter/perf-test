@@ -1,0 +1,9 @@
+---
+execution:
+  concurrency: 200
+  hold-for: 60s
+  scenario:
+    timeout: 10000ms
+    keepalive: true
+    requests:
+      - http://localhost:3000/1
