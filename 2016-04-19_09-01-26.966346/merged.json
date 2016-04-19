@@ -1,0 +1,13 @@
+{
+ "execution": {
+  "concurrency": 200, 
+  "hold-for": "60s", 
+  "scenario": {
+   "requests": [
+    "http://localhost:3000/1"
+   ], 
+   "timeout": "10000ms", 
+   "keepalive": true
+  }
+ }
+}

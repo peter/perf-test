@@ -166,23 +166,23 @@ bzt bzt.yml -o execution.concurrency=600
 23:25:00 INFO: Percentile 100.0%: 3.528
 ```
 
-## API Stack: Ruby on Rails
+## API Stack: ruby/rails (Ruby on Rails)
 
 Using thin web server:
 
 ```
 bzt bzt.yml -o execution.concurrency=600
 
-15:11:58 INFO: Test duration: 0:01:10
-15:11:58 INFO: Samples count: 5719, 50.38% failures
-15:11:58 INFO: Average times: total 6.496, latency 1.364, connect 0.231
-15:11:58 INFO: Percentile 0.0%: 0.000
-15:11:58 INFO: Percentile 50.0%: 8.004
-15:11:58 INFO: Percentile 90.0%: 10.227
-15:11:58 INFO: Percentile 95.0%: 12.652
-15:11:58 INFO: Percentile 99.0%: 17.343
-15:11:58 INFO: Percentile 99.9%: 18.634
-15:11:58 INFO: Percentile 100.0%: 18.980
+09:03:46 INFO: Test duration: 0:01:09
+09:03:46 INFO: Samples count: 5978, 46.65% failures
+09:03:46 INFO: Average times: total 6.141, latency 1.256, connect 0.430
+09:03:46 INFO: Percentile 0.0%: 0.000
+09:03:46 INFO: Percentile 50.0%: 5.929
+09:03:46 INFO: Percentile 90.0%: 10.021
+09:03:46 INFO: Percentile 95.0%: 11.360
+09:03:46 INFO: Percentile 99.0%: 14.322
+09:03:46 INFO: Percentile 99.9%: 15.757
+09:03:46 INFO: Percentile 100.0%: 17.540
 ```
 
 ```

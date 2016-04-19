@@ -1,0 +1,246 @@
+{
+ "cli-aliases": {
+  "report": {
+   "reporting": [
+    "blazemeter"
+   ]
+  }, 
+  "gui": {
+   "modules": {
+    "jmeter": {
+     "gui": true
+    }
+   }
+  }, 
+  "locations": {
+   "modules": {
+    "cloud": {
+     "dump-locations": true
+    }
+   }, 
+   "provisioning": "cloud"
+  }
+ }, 
+ "settings": {
+  "check-updates": true, 
+  "check-interval": 1, 
+  "aggregator": "consolidator", 
+  "default-executor": "jmeter", 
+  "proxy": {}, 
+  "artifacts-dir": "%Y-%m-%d_%H-%M-%S.%f", 
+  "hostaliases": {}
+ }, 
+ "reporting": [
+  {
+   "dump-csv": null, 
+   "module": "final_stats", 
+   "summary": true, 
+   "test-duration": true, 
+   "percentiles": true, 
+   "dump-xml": null, 
+   "failed-labels": false
+  }, 
+  {
+   "module": "console"
+  }
+ ], 
+ "modules": {
+  "ab": {
+   "class": "bzt.modules.ab.ApacheBenchmarkExecutor"
+  }, 
+  "grinder": {
+   "path": "~/.bzt/grinder-taurus/lib/grinder.jar", 
+   "class": "bzt.modules.grinder.GrinderExecutor", 
+   "properties": {
+    "grinder.useConsole": false
+   }
+  }, 
+  "jmeter": {
+   "plugins-download-link": "http://jmeter-plugins.org/files/JMeterPlugins-{plugin}-1.4.0.zip", 
+   "version": "2.13", 
+   "gui": false, 
+   "shutdown-wait": 5, 
+   "class": "bzt.modules.jmeter.JMeterExecutor", 
+   "system-properties": {
+    "sun.net.inetaddr.ttl": 0
+   }, 
+   "memory-xmx": "4096M", 
+   "path": "/Users/peter.marklund/.bzt/jmeter-taurus/bin/jmeter.sh", 
+   "properties": {
+    "jmeter.save.saveservice.autoflush": "true", 
+    "jmeter.save.saveservice.connect_time": "true", 
+    "user.classpath": "/Users/peter.marklund/src/tv4/perf-test/2016-04-19_09-01-26.966346", 
+    "summariser.name": "", 
+    "jmeterengine.force.system.exit": "true", 
+    "jmeter.save.saveservice.timestamp_format": "ms", 
+    "mode": "Stripped", 
+    "jmeterengine.nongui.maxport": 4445, 
+    "jmeterengine.nongui.port": 4445
+   }, 
+   "shutdown-port": 4445
+  }, 
+  "fail-criteria": {
+   "class": "bzt.modules.passfail.PassFailStatus"
+  }, 
+  "siege": {
+   "class": "bzt.modules.siege.SiegeExecutor"
+  }, 
+  "selenium": {
+   "selenium-tools": {
+    "junit": {
+     "hamcrest-core": "~/.bzt/selenium-taurus/tools/junit/hamcrest-core.jar", 
+     "path": "~/.bzt/selenium-taurus/tools/junit/junit.jar", 
+     "jar-name": "compiled.jar", 
+     "working-dir": "classes", 
+     "selenium-server": "~/.bzt/selenium-taurus/selenium-server.jar"
+    }, 
+    "nose": {
+     "working-dir": "classes"
+    }
+   }, 
+   "class": "bzt.modules.selenium.SeleniumExecutor"
+  }, 
+  "monitoring": {
+   "class": "bzt.modules.monitoring.Monitoring"
+  }, 
+  "locust": {
+   "class": "bzt.modules.locustio.LocustIOExecutor"
+  }, 
+  "final_stats": {
+   "class": "bzt.modules.reporting.FinalStatus"
+  }, 
+  "jtl-loader": "bzt.modules.jmeter.JMeterJTLLoaderExecutor", 
+  "blazemeter": {
+   "class": "bzt.modules.blazemeter.BlazeMeterUploader"
+  }, 
+  "passfail": {
+   "class": "bzt.modules.passfail.PassFailStatus"
+  }, 
+  "junit-xml": {
+   "class": "bzt.modules.reporting.JUnitXMLReporter"
+  }, 
+  "console": {
+   "disable": false, 
+   "class": "bzt.modules.console.ConsoleStatusReporter"
+  }, 
+  "shellexec": {
+   "class": "bzt.modules.shellexec.ShellExecutor"
+  }, 
+  "gatling": {
+   "class": "bzt.modules.gatling.GatlingExecutor", 
+   "properties": {
+    "gatling.data.file.bufferSize": 256
+   }
+  }, 
+  "pbench": {
+   "class": "bzt.modules.pbench.PBenchExecutor"
+  }, 
+  "consolidator": {
+   "max-buffer-len": Infinity, 
+   "buffer-multiplier": 2, 
+   "generalize-labels": false, 
+   "min-buffer-len": 2, 
+   "percentiles": [
+    0, 
+    50, 
+    90, 
+    95, 
+    99, 
+    99.9, 
+    100
+   ], 
+   "buffer-scale-choice": 0.5, 
+   "ignore-labels": [
+    "ignore"
+   ], 
+   "class": "bzt.modules.aggregator.ConsolidatingAggregator"
+  }, 
+  "cloud": {
+   "class": "bzt.modules.blazemeter.CloudProvisioning"
+  }, 
+  "local": {
+   "class": "bzt.modules.provisioning.Local"
+  }
+ }, 
+ "provisioning": "local", 
+ "version": "1.4.3", 
+ "included-configs": [], 
+ "install-id": "bf0747c8-0d32-42bd-86d5-23ed70cd3115", 
+ "services": [
+  {
+   "local": [
+    {
+     "metrics": [
+      "cpu", 
+      "mem", 
+      "bytes-sent", 
+      "bytes-recv", 
+      "disk-read", 
+      "disk-write", 
+      "disk-space", 
+      "engine-loop"
+     ]
+    }
+   ], 
+   "module": "monitoring"
+  }
+ ], 
+ "execution": {
+  "concurrency": {
+   "local": 600
+  }, 
+  "scenario": {
+   "concurrent-pool-size": 4, 
+   "store-cache": true, 
+   "modifications": {}, 
+   "force-parent-sample": true, 
+   "retrieve-resources": true, 
+   "store-cookie": true, 
+   "headers": {}, 
+   "think-time": null, 
+   "data-sources": {}, 
+   "timeout": "10000ms", 
+   "disable-listeners": true, 
+   "requests": [
+    {
+     "think-time": null, 
+     "body": null, 
+     "timeout": null, 
+     "url": "http://localhost:3000/1", 
+     "assert-jsonpath": [], 
+     "extract-xpath": {}, 
+     "extract-regexp": {}, 
+     "label": "http://localhost:3000/1", 
+     "assert": [], 
+     "headers": {}, 
+     "assert-xpath": [], 
+     "body-file": null, 
+     "method": "GET", 
+     "extract-css-jquery": {}, 
+     "extract-jsonpath": {}
+    }
+   ], 
+   "keepalive": true, 
+   "variables": {}, 
+   "properties": {
+    "jmeterengine.nongui.port": 4445, 
+    "jmeter.save.saveservice.timestamp_format": "ms", 
+    "jmeterengine.nongui.maxport": 4445
+   }, 
+   "use-dns-cache-mgr": true, 
+   "default-address": null
+  }, 
+  "ramp-up": null, 
+  "start-at": "", 
+  "distributed": [], 
+  "delay": 0, 
+  "throughput": {
+   "local": null
+  }, 
+  "write-xml-jtl": "error", 
+  "iterations": null, 
+  "executor": "jmeter", 
+  "steps": null, 
+  "hold-for": "60s"
+ }
+}
