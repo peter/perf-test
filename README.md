@@ -31,6 +31,21 @@ I had [problems](http://superuser.com/questions/323840/apache-bench-test-error-o
 The files under static are served with nginx.
 
 ```
+bzt bzt-static.yml -o execution.concurrency=1000
+
+09:08:48 INFO: Test duration: 0:01:25
+09:08:48 INFO: Samples count: 424341, 0.81% failures
+09:08:48 INFO: Average times: total 0.139, latency 0.048, connect 0.012
+09:08:48 INFO: Percentile 0.0%: 0.000
+09:08:48 INFO: Percentile 50.0%: 0.020
+09:08:48 INFO: Percentile 90.0%: 0.045
+09:08:48 INFO: Percentile 95.0%: 0.102
+09:08:48 INFO: Percentile 99.0%: 2.981
+09:08:48 INFO: Percentile 99.9%: 14.158
+09:08:48 INFO: Percentile 100.0%: 32.338
+```
+
+```
 bzt bzt-static.yml -o execution.concurrency=600
 
 14:17:40 INFO: Test duration: 0:01:24
@@ -62,7 +77,20 @@ bzt bzt-static.yml -o execution.concurrency=600
 
 Uses ring-jetty-adapter, clj-http, and cheshire libraries.
 
-Concurrency 600:
+```
+bzt bzt.yml -o execution.concurrency=1000
+
+09:13:50 INFO: Test duration: 0:01:14
+09:13:50 INFO: Samples count: 31568, 12.70% failures
+09:13:50 INFO: Average times: total 2.137, latency 0.777, connect 0.078
+09:13:50 INFO: Percentile 0.0%: 0.001
+09:13:50 INFO: Percentile 50.0%: 0.769
+09:13:50 INFO: Percentile 90.0%: 10.001
+09:13:50 INFO: Percentile 95.0%: 10.005
+09:13:50 INFO: Percentile 99.0%: 10.541
+09:13:50 INFO: Percentile 99.9%: 10.633
+09:13:50 INFO: Percentile 100.0%: 10.653
+```
 
 ```
 bzt bzt.yml -o execution.concurrency=600
@@ -79,8 +107,6 @@ bzt bzt.yml -o execution.concurrency=600
 14:19:37 INFO: Percentile 100.0%: 10.148
 ```
 
-Concurrency 100:
-
 ```
 bzt bzt.yml -o execution.concurrency=100
 
@@ -95,8 +121,6 @@ bzt bzt.yml -o execution.concurrency=100
 14:06:52 INFO: Percentile 99.9%: 10.006
 14:06:52 INFO: Percentile 100.0%: 10.013
 ```
-
-Concurrency 1:
 
 ```
 bzt bzt.yml -o execution.concurrency=1
@@ -218,6 +242,21 @@ bzt bzt.yml -o execution.concurrency=600
 ```
 
 ## API Stack: Node.js/Express
+
+```
+bzt bzt.yml -o execution.concurrency=1000
+
+09:10:52 INFO: Test duration: 0:01:14
+09:10:52 INFO: Samples count: 31368, 15.75% failures
+09:10:52 INFO: Average times: total 2.042, latency 1.053, connect 0.039
+09:10:52 INFO: Percentile 0.0%: 0.001
+09:10:52 INFO: Percentile 50.0%: 0.876
+09:10:52 INFO: Percentile 90.0%: 7.789
+09:10:52 INFO: Percentile 95.0%: 10.001
+09:10:52 INFO: Percentile 99.0%: 10.014
+09:10:52 INFO: Percentile 99.9%: 10.278
+09:10:52 INFO: Percentile 100.0%: 10.319
+```
 
 ```
 bzt bzt.yml -o execution.concurrency=600
