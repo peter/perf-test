@@ -5,6 +5,19 @@
 The server makes a GET HTTP request to fetch a small piece of JSON that is deserialized/serialized and
 served back to the client.
 
+## Disclaimer
+
+These numbers should be taken with a big grain of salt. All frameworks may not be
+optimally configured and the test may not be representative of your app needs.
+
+## Summary/Findings
+
+For a concurrency level of 600 the average response times roughly distribute themselves like this:
+
+* 200 ms: clojure/aleph, clojure/http-kit
+* 1000 ms: clojure/jetty, clojure/immutant, Elixir/Phoenix, Node.js/Express
+* 6000 ms: ruby/rails
+
 ## Hardware
 
 Results below are from my Macbook Air.
@@ -44,14 +57,6 @@ bzt bzt-static.yml -o execution.concurrency=600
 
 * [Framework Benchmarks from TechEmpower](https://www.techempower.com/benchmarks)
 * [Clojure Web Server Benchmarks](https://github.com/ptaoussanis/clojure-web-server-benchmarks)
-
-## Summary/Findings
-
-For a concurrency level of 600 the average response times roughly distribute themselves like this:
-
-* 200 ms: clojure/aleph, clojure/http-kit
-* 1000 ms: clojure/jetty, clojure/immutant, Elixir/Phoenix, Node.js/Express
-* 6000 ms: ruby/rails
 
 ## API Stack: clojure/jetty
 

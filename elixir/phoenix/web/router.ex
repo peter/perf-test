@@ -14,10 +14,9 @@ defmodule HelloPhoenix.Router do
   end
 
   scope "/", HelloPhoenix do
-    pipe_through :browser # Use the default browser stack
+    #pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-
     get "/1", PageController, :get
   end
 

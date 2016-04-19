@@ -4,12 +4,13 @@
 
 ```
 mix deps.get
+MIX_ENV=prod mix compile
 ```
 
 ## Running the Server
 
 ```
-mix phoenix.server
+PORT=3000 MIX_ENV=prod mix phoenix.server
 ```
 
 ## REPL
